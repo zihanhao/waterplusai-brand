@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WaterPlusAI · 品牌视觉方向提案</title>
+<style>
+:root{
+  --bg:#070E13;
+  --panel:#0D171E;
+  --panel-2:#101E27;
+  --line:rgba(125,225,225,.14);
+  --line-strong:rgba(125,225,225,.28);
+  --text:#EAF6F7;
+  --muted:#7E979E;
+  --muted-2:#547077;
+  --cyan:#22E0D0;
+  --cyan-soft:#8BF3E7;
+  --mark:#22E0D0;
+  --cut:#0D171E;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:"Inter","Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:50;height:72px;padding:0 4vw;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  border-bottom:1px solid var(--line);
+  background:rgba(7,14,19,.86);backdrop-filter:blur(20px);
+}
+.nav-brand{display:flex;align-items:center;gap:12px;font-size:13px;font-weight:800;letter-spacing:.16em;white-space:nowrap}
+.nav-dot{width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 14px var(--cyan)}
+.nav-links{display:flex;gap:4px;flex-wrap:wrap}
+.nav-links a{
+  padding:9px 15px;border-radius:999px;font-size:12px;color:var(--muted);
+  letter-spacing:.06em;transition:.2s;
+}
+.nav-links a:hover{color:var(--text);background:rgba(34,224,208,.08)}
+.nav-links a.on{color:#04110F;background:var(--cyan);font-weight:700}
+.nav-meta{font-size:11px;color:var(--muted-2);letter-spacing:.14em;white-space:nowrap}
+
+/* ---------- hero ---------- */
+.hero{padding:96px 4vw 84px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.hero::after{
+  content:"";position:absolute;right:-14vw;top:-30vw;width:62vw;height:62vw;pointer-events:none;
+  background:radial-gradient(circle,rgba(34,224,208,.075) 0%,rgba(34,224,208,0) 68%);
+}
+.eyebrow{margin:0 0 30px;color:var(--cyan);font-size:11px;font-weight:700;letter-spacing:.28em}
+.hero h1{margin:0;font-size:clamp(50px,8.4vw,132px);line-height:.9;letter-spacing:-.065em;font-weight:750}
+.hero h1 em{font-style:normal;color:var(--cyan)}
+.hero-sub{margin:36px 0 0;max-width:720px;color:var(--muted);font-size:15px;line-height:1.95}
+.hero-sub b{color:var(--text);font-weight:600}
+.hero-stats{margin-top:78px;display:flex;gap:0;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:26px}
+.hero-stats div{padding-right:64px;margin-right:64px;border-right:1px solid var(--line)}
+.hero-stats div:last-child{border:0;margin:0;padding:0}
+.hero-stats b{display:block;font-size:30px;letter-spacing:-.04em;color:var(--cyan-soft);font-weight:650}
+.hero-stats span{display:block;margin-top:8px;font-size:11px;color:var(--muted-2);letter-spacing:.1em}
+
+/* ---------- section shell ---------- */
+.scheme{padding:82px 4vw 88px;border-bottom:1px solid var(--line);scroll-margin-top:72px}
+.scheme-head{display:flex;align-items:flex-start;gap:26px;margin-bottom:38px;flex-wrap:wrap}
+.idx{
+  flex:0 0 auto;width:52px;height:52px;display:grid;place-items:center;
+  border:1px solid var(--line-strong);border-radius:50%;
+  color:var(--cyan);font-size:13px;font-weight:700;letter-spacing:.06em;
+}
+.head-txt{flex:1 1 320px;min-width:0}
+.head-txt h2{margin:0;font-size:clamp(26px,3.2vw,42px);letter-spacing:-.035em;font-weight:700}
+.head-txt h2 em{font-style:normal;font-size:.44em;color:var(--muted-2);letter-spacing:.12em;font-weight:500;margin-left:16px;vertical-align:middle}
+.head-txt p{margin:12px 0 0;color:var(--muted);font-size:13.5px;line-height:1.8}
+.pick{
+  flex:0 0 auto;align-self:center;padding:11px 20px;border:1px solid var(--line-strong);
+  border-radius:999px;background:transparent;font-size:12px;color:var(--muted);transition:.2s;
+}
+.pick:hover{border-color:var(--cyan);color:var(--cyan)}
+.pick.on{background:var(--cyan);border-color:var(--cyan);color:#04110F;font-weight:700}
+
+.grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,1fr);gap:22px}
+
+/* ---------- stage ---------- */
+.stage{
+  --mark:#22E0D0;--cut:#0D171E;--stage-bg:#0B151C;--stage-line:rgba(125,225,225,.14);
+  background:var(--stage-bg);border:1px solid var(--stage-line);border-radius:6px;overflow:hidden;
+  transition:background .3s,border-color .3s;
+}
+.stage.light{--mark:#0A8F86;--cut:#F2F8F9;--stage-bg:#F2F8F9;--stage-line:rgba(10,80,80,.16)}
+.stage-bar{
+  height:46px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--stage-line);
+}
+.stage-bar span{font-size:10.5px;letter-spacing:.2em;color:var(--muted-2)}
+.stage.light .stage-bar span{color:#69868A}
+.modes{display:flex;gap:4px}
+.modes button{
+  padding:5px 12px;border:0;border-radius:999px;background:transparent;
+  font-size:11px;color:var(--muted-2);transition:.2s;
+}
+.stage.light .modes button{color:#69868A}
+.modes button.on{background:var(--mark);color:var(--stage-bg);font-weight:700}
+.canvas{
+  height:326px;display:grid;place-items:center;position:relative;
+  background-image:linear-gradient(var(--stage-line) 1px,transparent 1px),linear-gradient(90deg,var(--stage-line) 1px,transparent 1px);
+  background-size:44px 44px;background-position:center center;
+  opacity:1;
+}
+.canvas::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse at center,transparent 30%,var(--stage-bg) 82%);
+}
+.mark-lg{
+  position:relative;width:190px;height:190px;color:var(--mark);
+  filter:drop-shadow(0 0 16px rgba(34,224,208,.42));
+  transition:color .3s,filter .3s;
+}
+.stage.light .mark-lg{filter:drop-shadow(0 0 10px rgba(10,143,134,.18))}
+.lockup{
+  display:flex;align-items:center;gap:20px;padding:26px 30px;
+  border-top:1px solid var(--stage-line);
+}
+.mark-sm{flex:0 0 auto;width:54px;height:54px;color:var(--mark);transition:color .3s}
+.lockup-txt b{display:block;font-size:25px;letter-spacing:-.035em;font-weight:700;color:var(--text);transition:color .3s}
+.stage.light .lockup-txt b{color:#0B2A2C}
+.lockup-txt span{display:block;margin-top:5px;font-size:11.5px;letter-spacing:.1em;color:var(--muted-2)}
+.stage.light .lockup-txt span{color:#5B787C}
+
+/* ---------- meta ---------- */
+.meta{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:30px 28px}
+.meta h3{margin:0 0 22px;font-size:11px;letter-spacing:.22em;color:var(--cyan);font-weight:700}
+.meta dl{margin:0}
+.meta dt{font-size:10.5px;letter-spacing:.14em;color:var(--muted-2);margin-bottom:7px}
+.meta dd{margin:0 0 20px;font-size:13px;line-height:1.75;color:var(--text)}
+.meta dd:last-of-type{margin-bottom:0}
+.swatches{display:flex;gap:8px;margin-top:4px}
+.swatches i{width:30px;height:30px;border-radius:3px;border:1px solid rgba(255,255,255,.1);display:block}
+.sw-1{background:#22E0D0}.sw-2{background:rgba(34,224,208,.55)}.sw-3{background:rgba(34,224,208,.24)}.sw-4{background:#0D171E}
+.pc{margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+.pc p{margin:0 0 12px;font-size:12px;line-height:1.75;color:var(--muted)}
+.pc p:last-child{margin-bottom:0}
+.pc b{font-weight:700;letter-spacing:.06em}
+.pc .plus{color:var(--cyan-soft)}
+.pc .minus{color:#6E8A90}
+
+/* ---------- applications ---------- */
+.apps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.app{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--panel)}
+.app-label{padding:11px 16px;font-size:10.5px;letter-spacing:.14em;color:var(--muted-2);border-bottom:1px solid var(--line)}
+.app-body{height:132px;display:grid;place-items:center}
+.app-icon{
+  width:74px;height:74px;border-radius:17px;display:grid;place-items:center;
+  background:#0F222B;border:1px solid rgba(34,224,208,.24);
+  box-shadow:0 0 26px rgba(34,224,208,.1);
+}
+.app-icon svg{width:42px;height:42px;color:var(--cyan);filter:drop-shadow(0 0 8px rgba(34,224,208,.5))}
+.app-pill{display:flex;align-items:center;gap:11px;padding:10px 16px;border:1px solid var(--line-strong);border-radius:999px}
+.app-pill svg{width:24px;height:24px;color:var(--cyan)}
+.app-pill span{font-size:13px;font-weight:600;letter-spacing:-.01em}
+.app-light{background:#F2F8F9;width:100%;height:100%;display:grid;place-items:center}
+.app-light-inner{display:flex;align-items:center;gap:10px}
+.app-light svg{width:30px;height:30px;color:#0A8F86}
+.app-light b{font-size:14px;color:#0B2A2C;letter-spacing:-.02em;font-weight:700}
+.app-light small{display:block;font-size:9px;color:#5B787C;letter-spacing:.08em;margin-top:2px}
+
+/* ---------- compare ---------- */
+.compare{padding:88px 4vw 96px;border-bottom:1px solid var(--line)}
+.sec-title{margin:0 0 12px;font-size:clamp(28px,3.6vw,46px);letter-spacing:-.04em;font-weight:700}
+.sec-desc{margin:0 0 42px;color:var(--muted);font-size:13.5px;line-height:1.85}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px}
+table{width:100%;border-collapse:collapse;min-width:820px;font-size:12.5px}
+th,td{padding:17px 20px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.7}
+thead th{background:var(--panel-2);color:var(--cyan);font-size:11px;letter-spacing:.14em;font-weight:700;white-space:nowrap}
+tbody th{font-weight:700;color:var(--text);white-space:nowrap;background:rgba(255,255,255,.012)}
+tbody td{color:var(--muted)}
+tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td,tbody tr:hover th{background:rgba(34,224,208,.035)}
+.score{color:var(--cyan-soft);font-weight:700;letter-spacing:.08em}
+
+/* ---------- notes ---------- */
+.notes{padding:84px 4vw 96px}
+.note-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:36px}
+.note{border:1px solid var(--line);border-radius:6px;padding:28px 26px;background:var(--panel)}
+.note h4{margin:0 0 14px;font-size:14px;letter-spacing:.02em}
+.note p{margin:0 0 10px;font-size:12.5px;line-height:1.85;color:var(--muted)}
+.note p:last-child{margin-bottom:0}
+.note code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;color:var(--cyan-soft);background:rgba(34,224,208,.07);padding:2px 6px;border-radius:3px}
+.warn{border-color:rgba(34,224,208,.4);background:linear-gradient(180deg,rgba(34,224,208,.06),var(--panel))}
+.warn h4{color:var(--cyan)}
+footer{padding:30px 4vw 46px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:11px;color:var(--muted-2);letter-spacing:.08em}
+
+/* ---------- pick bar ---------- */
+.pickbar{
+  position:fixed;left:50%;bottom:24px;transform:translate(-50%,130%);z-index:80;
+  display:flex;align-items:center;gap:16px;padding:12px 14px 12px 22px;
+  border:1px solid var(--line-strong);border-radius:999px;
+  background:rgba(13,23,30,.96);backdrop-filter:blur(18px);
+  box-shadow:0 16px 44px rgba(0,0,0,.5);font-size:12px;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1);
+}
+.pickbar.show{transform:translate(-50%,0)}
+.pickbar b{color:var(--cyan-soft);font-weight:700}
+.pickbar button{border:0;border-radius:999px;padding:8px 16px;background:var(--cyan);color:#04110F;font-weight:700;font-size:11.5px}
+
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr}
+  .note-grid{grid-template-columns:1fr}
+  .apps{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero-stats div{padding-right:30px;margin-right:30px}
+  .hero-stats b{font-size:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ SVG 图形定义：全部使用 currentColor，深浅底自动继承 ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <!-- 01 水滴回路 -->
+  <symbol id="logo-a" viewBox="0 0 120 120">
+    <path d="M60 14 C 79 39, 96 56, 96 74 A 36 36 0 0 1 24 74 C 24 56, 41 39, 60 14 Z"
+          fill="none" stroke="currentColor" stroke-width="4.6" stroke-linejoin="round"/>
+    <path d="M60 42 V 88" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" opacity=".55"/>
+    <path d="M44 60 H 76" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" opacity=".3"/>
+    <path d="M48 76 H 72" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" opacity=".3"/>
+    <circle cx="60" cy="42" r="5.2" fill="currentColor"/>
+    <circle cx="60" cy="60" r="4.2" fill="currentColor" opacity=".8"/>
+    <circle cx="60" cy="76" r="4.2" fill="currentColor" opacity=".6"/>
+  </symbol>
+
+  <!-- 02 加号交汇 -->
+  <symbol id="logo-b" viewBox="0 0 120 120">
+    <rect x="51" y="12" width="18" height="32" rx="9" fill="currentColor" opacity=".8"/>
+    <rect x="51" y="76" width="18" height="32" rx="9" fill="currentColor" opacity=".8"/>
+    <rect x="12" y="51" width="32" height="18" rx="9" fill="currentColor" opacity=".8"/>
+    <rect x="76" y="51" width="32" height="18" rx="9" fill="currentColor" opacity=".8"/>
+    <path d="M60 42 L78 60 L60 78 L42 60 Z" fill="currentColor"/>
+    <circle cx="60" cy="60" r="5.4" fill="var(--cut,#0D171E)"/>
+  </symbol>
+
+  <!-- 03 波形脉冲 -->
+  <symbol id="logo-c" viewBox="0 0 120 120">
+    <path d="M8 40 C 24 25, 40 55, 54 40 C 63 31, 72 40, 84 40"
+          fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" opacity=".32"/>
+    <path d="M8 80 C 24 65, 40 95, 54 80 C 63 71, 72 80, 84 80"
+          fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" opacity=".32"/>
+    <path d="M8 60 C 22 46, 38 74, 52 60 H 63 V 47 H 77 V 73 H 91 V 60 H 108"
+          fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="108" cy="60" r="5" fill="currentColor"/>
+  </symbol>
+
+  <!-- 04 括号水滴 -->
+  <symbol id="logo-d" viewBox="0 0 120 120">
+    <path d="M40 18 H 26 V 102 H 40" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>
+    <path d="M80 18 H 94 V 102 H 80" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>
+    <path d="M60 34 C 71 49, 77 58, 77 68 A 17 17 0 0 1 43 68 C 43 58, 49 49, 60 34 Z" fill="currentColor"/>
+    <circle cx="48" cy="90" r="2.8" fill="currentColor" opacity=".35"/>
+    <circle cx="60" cy="90" r="2.8" fill="currentColor" opacity=".65"/>
+    <circle cx="72" cy="90" r="2.8" fill="currentColor"/>
+  </symbol>
+</defs>
+</svg>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="nav-brand"><i class="nav-dot"></i> WATERPLUSAI / BRAND LAB</div>
+  <div class="nav-links">
+    <a href="#a" class="on">01 水滴回路</a>
+    <a href="#b">02 加号交汇</a>
+    <a href="#c">03 波形脉冲</a>
+    <a href="#d">04 括号水滴</a>
+    <a href="#compare">对比</a>
+  </div>
+  <div class="nav-meta">CONCEPT ROUND 01 · 2026.11</div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <p class="eyebrow">BRAND DIRECTION PROPOSAL / 品牌视觉方向提案</p>
+  <h1>WaterPlus<em>AI</em></h1>
+  <p class="hero-sub">
+    面向水务行业的 AI 知识工作台。<b>第一轮不做定稿，只做方向</b>——四组极简几何符号，
+    统一采用单色青系 + 不透明度分层表达强度，不用多色渐变。请逐组截图回传，选出 1–2 个方向后再进入细节收敛。
+  </p>
+  <div class="hero-stats">
+    <div><b>04</b><span>LOGO 方向</span></div>
+    <div><b>01</b><span>单色体系</span></div>
+    <div><b>03</b><span>每组落地场景测试</span></div>
+    <div><b>SVG</b><span>矢量 / 无损缩放</span></div>
+  </div>
+</header>
+
+<!-- ============ 01 ============ -->
+<section class="scheme" id="a" data-name="01 水滴回路">
+  <div class="scheme-head">
+    <div class="idx">01</div>
+    <div class="head-txt">
+      <h2>水滴回路 <em>DROP / CIRCUIT</em></h2>
+      <p>把行业属性放在第一眼：水滴轮廓内是一根纵向数据脊与三个节点，水的形态里长出电路。</p>
+    </div>
+    <button class="pick">加入候选</button>
+  </div>
+  <div class="grid">
+    <div class="stage" data-stage>
+      <div class="stage-bar">
+        <span>PRIMARY MARK / 主图形</span>
+        <div class="modes"><button class="on" data-mode="dark">深色</button><button data-mode="light">浅色</button></div>
+      </div>
+      <div class="canvas"><svg class="mark-lg"><use href="#logo-a"/></svg></div>
+      <div class="lockup">
+        <svg class="mark-sm"><use href="#logo-a"/></svg>
+        <div class="lockup-txt"><b>WaterPlusAI</b><span>懂水务的 AI 知识工作台</span></div>
+      </div>
+    </div>
+    <aside class="meta">
+      <h3>DESIGN SPEC</h3>
+      <dl>
+        <dt>图形逻辑</dt><dd>闭合水滴 + 中轴数据脊 + 三组节点，外轮廓 4.6px 均匀描边。</dd>
+        <dt>强度表达</dt><dd>节点用 100% / 80% / 60% 三档不透明度，暗示数据由核心向外衰减。</dd>
+        <dt>色值</dt><dd><div class="swatches"><i class="sw-1"></i><i class="sw-2"></i><i class="sw-3"></i><i class="sw-4"></i></div></dd>
+        <dt>最佳场景</dt><dd>产品主标识、小程序图标、官网首页、对外 PPT 封面。</dd>
+      </dl>
+      <div class="pc">
+        <p><b class="plus">＋ 优势</b>　行业识别最直白，水务受众零解释成本；轮廓闭合，缩到 24px 仍成立。</p>
+        <p><b class="minus">－ 代价</b>　水滴是智慧水务高频符号，差异化依赖内部回路细节，需靠字标组合拉开距离。</p>
+      </div>
+    </aside>
+  </div>
+  <div class="apps">
+    <div class="app"><div class="app-label">APP / 小程序图标</div><div class="app-body"><div class="app-icon"><svg><use href="#logo-a"/></svg></div></div></div>
+    <div class="app"><div class="app-label">FAVICON / 24PX</div><div class="app-body"><div class="app-pill"><svg><use href="#logo-a"/></svg><span>WaterPlusAI</span></div></div></div>
+    <div class="app"><div class="app-label">浅底反白 / 文档页眉</div><div class="app-body" style="padding:0"><div class="app-light"><div class="app-light-inner"><svg><use href="#logo-a"/></svg><div><b>WaterPlusAI</b><small>水务行业知识工作台</small></div></div></div></div></div>
+  </div>
+</section>
+
+<!-- ============ 02 ============ -->
+<section class="scheme" id="b" data-name="02 加号交汇">
+  <div class="scheme-head">
+    <div class="idx">02</div>
+    <div class="head-txt">
+      <h2>加号交汇 <em>PLUS / JUNCTION</em></h2>
+      <p>直接继承 WaterPlus 的「+」资产：四臂从四方汇入中心菱形内核，图形本身就是「叠加与连接」。</p>
+    </div>
+    <button class="pick">加入候选</button>
+  </div>
+  <div class="grid">
+    <div class="stage" data-stage>
+      <div class="stage-bar">
+        <span>PRIMARY MARK / 主图形</span>
+        <div class="modes"><button class="on" data-mode="dark">深色</button><button data-mode="light">浅色</button></div>
+      </div>
+      <div class="canvas"><svg class="mark-lg"><use href="#logo-b"/></svg></div>
+      <div class="lockup">
+        <svg class="mark-sm"><use href="#logo-b"/></svg>
+        <div class="lockup-txt"><b>WaterPlusAI</b><span>懂水务的 AI 知识工作台</span></div>
+      </div>
+    </div>
+    <aside class="meta">
+      <h3>DESIGN SPEC</h3>
+      <dl>
+        <dt>图形逻辑</dt><dd>四段圆角臂等距围合，中心实心菱形挖出圆形内核，形成「数据汇聚」负形。</dd>
+        <dt>强度表达</dt><dd>四臂统一 80% 不透明度，中心菱形 100%，靠形状而非颜色拉开层级。</dd>
+        <dt>色值</dt><dd><div class="swatches"><i class="sw-1"></i><i class="sw-2"></i><i class="sw-3"></i><i class="sw-4"></i></div></dd>
+        <dt>最佳场景</dt><dd>平台级母品牌、开发平台标识、API / 生态合作物料、系统内嵌角标。</dd>
+      </dl>
+      <div class="pc">
+        <p><b class="plus">＋ 优势</b>　与母品牌命名同源，延展性最强；纯几何、极简、科技感最足，做动态发光最漂亮。</p>
+        <p><b class="minus">－ 代价</b>　偏平台/技术符号，水务行业属性弱；「+」是通用符号，需评估与既有品牌图形的冲突。</p>
+      </div>
+    </aside>
+  </div>
+  <div class="apps">
+    <div class="app"><div class="app-label">APP / 小程序图标</div><div class="app-body"><div class="app-icon"><svg><use href="#logo-b"/></svg></div></div></div>
+    <div class="app"><div class="app-label">FAVICON / 24PX</div><div class="app-body"><div class="app-pill"><svg><use href="#logo-b"/></svg><span>WaterPlusAI</span></div></div></div>
+    <div class="app"><div class="app-label">浅底反白 / 文档页眉</div><div class="app-body" style="padding:0"><div class="app-light"><div class="app-light-inner"><svg><use href="#logo-b"/></svg><div><b>WaterPlusAI</b><small>水务行业知识工作台</small></div></div></div></div></div>
+  </div>
+</section>
+
+<!-- ============ 03 ============ -->
+<section class="scheme" id="c" data-name="03 波形脉冲">
+  <div class="scheme-head">
+    <div class="idx">03</div>
+    <div class="head-txt">
+      <h2>波形脉冲 <em>WAVE / PULSE</em></h2>
+      <p>一条主线从左至右由水波转译为方波脉冲，末端点亮。讲「行业经验被 AI 结构化」这件事。</p>
+    </div>
+    <button class="pick">加入候选</button>
+  </div>
+  <div class="grid">
+    <div class="stage" data-stage>
+      <div class="stage-bar">
+        <span>PRIMARY MARK / 主图形</span>
+        <div class="modes"><button class="on" data-mode="dark">深色</button><button data-mode="light">浅色</button></div>
+      </div>
+      <div class="canvas"><svg class="mark-lg"><use href="#logo-c"/></svg></div>
+      <div class="lockup">
+        <svg class="mark-sm"><use href="#logo-c"/></svg>
+        <div class="lockup-txt"><b>WaterPlusAI</b><span>懂水务的 AI 知识工作台</span></div>
+      </div>
+    </div>
+    <aside class="meta">
+      <h3>DESIGN SPEC</h3>
+      <dl>
+        <dt>图形逻辑</dt><dd>上下两条水波作 32% 强度衬线，中间主线完成「曲线 → 阶梯」的形态转换。</dd>
+        <dt>强度表达</dt><dd>32% / 32% / 100% 三档不透明度，视线自然落到被结构化的那条线。</dd>
+        <dt>色值</dt><dd><div class="swatches"><i class="sw-1"></i><i class="sw-2"></i><i class="sw-3"></i><i class="sw-4"></i></div></dd>
+        <dt>最佳场景</dt><dd>产品发布 KV、官网动效首屏、能力介绍页、汇报材料头图。</dd>
+      </dl>
+      <div class="pc">
+        <p><b class="plus">＋ 优势</b>　四组里唯一带叙事与方向感，动效潜力最大；横向构图与长条形字标天然适配。</p>
+        <p><b class="minus">－ 代价</b>　非闭合图形、细节偏多，24px 以下会糊；不适合作为独立 App 图标，需要另配简化版。</p>
+      </div>
+    </aside>
+  </div>
+  <div class="apps">
+    <div class="app"><div class="app-label">APP / 小程序图标</div><div class="app-body"><div class="app-icon"><svg><use href="#logo-c"/></svg></div></div></div>
+    <div class="app"><div class="app-label">FAVICON / 24PX</div><div class="app-body"><div class="app-pill"><svg><use href="#logo-c"/></svg><span>WaterPlusAI</span></div></div></div>
+    <div class="app"><div class="app-label">浅底反白 / 文档页眉</div><div class="app-body" style="padding:0"><div class="app-light"><div class="app-light-inner"><svg><use href="#logo-c"/></svg><div><b>WaterPlusAI</b><small>水务行业知识工作台</small></div></div></div></div></div>
+  </div>
+</section>
+
+<!-- ============ 04 ============ -->
+<section class="scheme" id="d" data-name="04 括号水滴">
+  <div class="scheme-head">
+    <div class="idx">04</div>
+    <div class="head-txt">
+      <h2>括号水滴 <em>BRACKET / KNOWLEDGE</em></h2>
+      <p>一对方括号收拢一滴水，下方三枚递进节点。对应「把行业知识装进 AI 工作台」的产品定位。</p>
+    </div>
+    <button class="pick">加入候选</button>
+  </div>
+  <div class="grid">
+    <div class="stage" data-stage>
+      <div class="stage-bar">
+        <span>PRIMARY MARK / 主图形</span>
+        <div class="modes"><button class="on" data-mode="dark">深色</button><button data-mode="light">浅色</button></div>
+      </div>
+      <div class="canvas"><svg class="mark-lg"><use href="#logo-d"/></svg></div>
+      <div class="lockup">
+        <svg class="mark-sm"><use href="#logo-d"/></svg>
+        <div class="lockup-txt"><b>WaterPlusAI</b><span>懂水务的 AI 知识工作台</span></div>
+      </div>
+    </div>
+    <aside class="meta">
+      <h3>DESIGN SPEC</h3>
+      <dl>
+        <dt>图形逻辑</dt><dd>方括号 55% 强度作容器，中心实心水滴 100%，底部三节点 35% / 65% / 100% 递进。</dd>
+        <dt>强度表达</dt><dd>用「容器 → 内容 → 结果」三层不透明度，映射检索、沉淀、输出的产品链路。</dd>
+        <dt>色值</dt><dd><div class="swatches"><i class="sw-1"></i><i class="sw-2"></i><i class="sw-3"></i><i class="sw-4"></i></div></dd>
+        <dt>最佳场景</dt><dd>AI 对话入口、知识库模块标识、智能体市场、产品内功能图标体系。</dd>
+      </dl>
+      <div class="pc">
+        <p><b class="plus">＋ 优势</b>　最贴合「知识工作台」定位，括号语汇可直接延展成整套功能图标系统。</p>
+        <p><b class="minus">－ 代价</b>　括号易被读成代码/开发符号，品牌级气场略弱于 01、02。</p>
+      </div>
+    </aside>
+  </div>
+  <div class="apps">
+    <div class="app"><div class="app-label">APP / 小程序图标</div><div class="app-body"><div class="app-icon"><svg><use href="#logo-d"/></svg></div></div></div>
+    <div class="app"><div class="app-label">FAVICON / 24PX</div><div class="app-body"><div class="app-pill"><svg><use href="#logo-d"/></svg><span>WaterPlusAI</span></div></div></div>
+    <div class="app"><div class="app-label">浅底反白 / 文档页眉</div><div class="app-body" style="padding:0"><div class="app-light"><div class="app-light-inner"><svg><use href="#logo-d"/></svg><div><b>WaterPlusAI</b><small>水务行业知识工作台</small></div></div></div></div></div>
+  </div>
+</section>
+
+<!-- ============ COMPARE ============ -->
+<section class="compare" id="compare">
+  <p class="eyebrow">DECISION MATRIX / 方向对比</p>
+  <h2 class="sec-title">四组方向怎么选</h2>
+  <p class="sec-desc">按「行业识别 / 科技感 / 小尺寸可用性 / 母品牌延续 / 延展性」五项打分，★★★ 为最佳。评分是设计判断，不是数据结论。</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr>
+        <th>方向</th><th>核心语义</th><th>行业识别</th><th>科技感</th><th>小尺寸</th><th>母品牌延续</th><th>延展性</th><th>建议定位</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <th>01 水滴回路</th><td>水 + 数据节点</td>
+          <td class="score">★★★</td><td class="score">★★</td><td class="score">★★★</td><td class="score">★★</td><td class="score">★★★</td>
+          <td>主标识首选，对外传播最稳</td>
+        </tr>
+        <tr>
+          <th>02 加号交汇</th><td>叠加 / 平台 / 连接</td>
+          <td class="score">★</td><td class="score">★★★</td><td class="score">★★★</td><td class="score">★★★</td><td class="score">★★★</td>
+          <td>平台级母品牌，或作为 01 的辅助图形</td>
+        </tr>
+        <tr>
+          <th>03 波形脉冲</th><td>行业经验 → AI 结构化</td>
+          <td class="score">★★</td><td class="score">★★★</td><td class="score">★</td><td class="score">★</td><td class="score">★★</td>
+          <td>不做主标，留作发布 KV 与首屏动效</td>
+        </tr>
+        <tr>
+          <th>04 括号水滴</th><td>知识容器 / 检索沉淀</td>
+          <td class="score">★★</td><td class="score">★★</td><td class="score">★★</td><td class="score">★★</td><td class="score">★★★</td>
+          <td>产品内功能图标体系，或对话入口标识</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="sec-desc" style="margin:26px 0 0">
+    <b style="color:var(--text)">我的建议：</b>主标走 <b style="color:var(--cyan-soft)">01</b>，把 <b style="color:var(--cyan-soft)">02</b> 收成辅助几何元素（分隔符、加载动效、模块角标），
+    <b style="color:var(--cyan-soft)">03</b> 留作首屏动效，<b style="color:var(--cyan-soft)">04</b> 降级为功能图标语汇。这样一套体系内有主次，不用四选一。
+  </p>
+</section>
+
+<!-- ============ NOTES ============ -->
+<section class="notes">
+  <p class="eyebrow">NOTES / 使用前必读</p>
+  <h2 class="sec-title">命名、字体与合规</h2>
+  <div class="note-grid">
+    <div class="note warn">
+      <h4>重要 · 这是概念提案，不是官方标识</h4>
+      <p>WaterPlusAI 为「水务加 / WaterPlus」已有产品，公开渠道已使用 <code>WaterPlusAI</code>、<code>WaterPlus AI</code> 及 <code>SHUIWU+</code> 等写法与视觉资产。</p>
+      <p>本页四组图形均为独立创作的概念方向，仅供内部评审与视觉比选。若进入对外商用，需先确认品牌归属、取得授权，并与既有 VI 做一致性核对，避免与主品牌冲突。</p>
+    </div>
+    <div class="note">
+      <h4>字标与字体版权</h4>
+      <p>页面字标使用系统无衬线字体栈 <code>Inter / Helvetica Neue / Arial / PingFang SC</code>，仅用于预览，<b style="color:var(--text)">未做任何字形定制</b>。</p>
+      <p>Inter 为 OFL 开源可商用；PingFang SC 属 Apple 系统字体，嵌入式商用需评估。正式定稿建议换为思源黑体 / HarmonyOS Sans 等开源中文字体，并对字距、字重做专门设计后再做商标查册。</p>
+    </div>
+    <div class="note">
+      <h4>命名规范待统一</h4>
+      <p>建议锁定单一写法。三个候选：<code>WaterPlusAI</code>（连写，产品名）、<code>WaterPlus AI</code>（分词，对外传播）、<code>WaterPlus·AI</code>（品牌 + 能力线）。</p>
+      <p>本轮统一按 <code>WaterPlusAI</code> 渲染。中文副标「懂水务的 AI 知识工作台」为定位描述，未作官方 slogan 认定。</p>
+    </div>
+    <div class="note">
+      <h4>色彩与交付规格</h4>
+      <p>主色 <code>#22E0D0</code>，深底 <code>#070E13</code>，面板 <code>#0D171E</code>。全程单色系，靠不透明度分层，无多色渐变。</p>
+      <p>四组图形均为内联 SVG 矢量，可无损导出任意尺寸；定稿后建议补齐：横版/竖版组合、最小安全间距、单色黑白版、反白版、禁用示例与 SVG 源文件。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>WATERPLUSAI · BRAND DIRECTION ROUND 01 · 概念提案 / 非官方标识</span>
+  <span>4 DIRECTIONS · SINGLE-HUE CYAN · INLINE SVG</span>
+</footer>
+
+<div class="pickbar" id="pickbar"><span>已选候选 <b id="picklist">—</b></span><button id="copybtn">复制清单</button></div>
+
+<script>
+// 深浅底切换（每个舞台独立）
+document.querySelectorAll('[data-stage]').forEach(function(stage){
+  stage.querySelectorAll('[data-mode]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      stage.classList.toggle('light', btn.dataset.mode === 'light');
+      stage.querySelectorAll('[data-mode]').forEach(function(b){ b.classList.toggle('on', b === btn); });
+    });
+  });
+});
+
+// 候选标记
+var picked = [];
+var bar = document.getElementById('pickbar');
+var list = document.getElementById('picklist');
+document.querySelectorAll('.pick').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var name = btn.closest('.scheme').dataset.name;
+    var i = picked.indexOf(name);
+    if(i > -1){ picked.splice(i,1); btn.classList.remove('on'); btn.textContent = '加入候选'; }
+    else { picked.push(name); btn.classList.add('on'); btn.textContent = '✓ 已加入'; }
+    list.textContent = picked.length ? picked.join(' ／ ') : '—';
+    bar.classList.toggle('show', picked.length > 0);
+  });
+});
+document.getElementById('copybtn').addEventListener('click',function(){
+  var txt = 'WaterPlusAI 品牌方向候选：' + picked.join('、');
+  navigator.clipboard.writeText(txt).then(function(){
+    var b = document.getElementById('copybtn'); b.textContent = '已复制 ✓';
+    setTimeout(function(){ b.textContent = '复制清单'; }, 1600);
+  });
+});
+
+// 导航高亮
+var links = document.querySelectorAll('.nav-links a');
+var sections = Array.prototype.slice.call(links).map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+window.addEventListener('scroll',function(){
+  var y = window.scrollY + 140, cur = sections[0];
+  sections.forEach(function(s){ if(s && s.offsetTop <= y) cur = s; });
+  links.forEach(function(a){ a.classList.toggle('on', a.getAttribute('href') === '#' + cur.id); });
+},{passive:true});
+</script>
+</body>
+</html>
